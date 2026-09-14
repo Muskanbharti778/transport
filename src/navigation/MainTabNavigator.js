@@ -3,7 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {StyleSheet, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeScreen from '../features/dashboard/screens/HomeScreen';
-import TripsListScreen from '../features/trips/screens/TripsListScreen';
+import TripsListScreen from '../features/trips/screens/TripListScreen';
 import AddScreen from '../features/quickActions/screens/AddScreen';
 import KhataScreen from '../features/khata/screens/KhataScreen';
 import AccountScreen from '../features/account/screens/AccountScreen';

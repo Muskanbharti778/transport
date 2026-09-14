@@ -1,6 +1,15 @@
 import {apiClient} from '../../services/api/client';
 import {authStorage} from '../../services/storage/authStorage';
 import {mockFetchDrivers, mockCreateDriver} from './drivers.mock';
+import {env} from '../../config/env';
+
+function driverPhotoUrl(photo) {
+  if (!photo) return null;
+  if (/^https?:\/\//i.test(photo)) return photo;
+
+  const serverUrl = env.apiBaseUrl.replace(/\/api\/?$/, '');
+  return `${serverUrl}/storage/${String(photo).replace(/^\/?storage\//, '')}`;
+}
 
 export function mapDriverFromBackend(item) {
   if (!item) return null;
@@ -12,7 +21,8 @@ export function mapDriverFromBackend(item) {
     opening_balance: openingBalance,
     balance_type: item.balance_type || item.balanceType || (openingBalance >= 0 ? 'has_to_pay' : 'has_to_get'),
     status: item.status == null ? 1 : Number(item.status),
-    driverphoto: item.driverphoto || null,
+    //driverphoto: item.driverphoto || null,
+    driverphoto: driverPhotoUrl(item.driverphoto),
   };
 }
 

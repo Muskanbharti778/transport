@@ -10,14 +10,20 @@ import SuppliersListScreen from '../features/suppliers/screens/SuppliersListScre
 import AddSupplierScreen from '../features/suppliers/screens/AddSupplierScreen';
 import TrucksListScreen from '../features/trucks/screens/TrucksListScreen';
 import AddTruckScreen from '../features/trucks/screens/AddTruckScreen';
-import TripsListScreen from '../features/trips/screens/TripsListScreen';
 import AddTripScreen from '../features/trips/screens/AddTripScreen';
+import TripsListScreen from '../features/trips/screens/TripListScreen';
 import TripDetailsScreen from '../features/trips/screens/TripDetailsScreen';
 import TripProgressScreen from '../features/trips/screens/TripProgressScreen';
 import QuickActionSheet from '../features/quickActions/components/QuickActionSheet';
 import {quickActionSheetController} from '../features/quickActions/quickActionSheetController';
 import {routes} from './routeNames';
 import {colors} from '../theme';
+import ExpensesScreen from '../features/expenses/screens/ExpensesScreen';
+import PaymentsScreen from '../features/payments/screens/PaymentsScreen';
+import ProfitLossReportScreen from '../features/expenses/screens/ProfitLossReportScreen';
+import KhataScreen from '../features/khata/screens/KhataScreen';
+import DocumentsScreen from '../features/documents/screens/DocumentsScreen';
+import ReportsScreen from '../features/reports/screens/ReportsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -103,7 +109,37 @@ export default function AppNavigator() {
           component={AddTruckScreen}
           options={{title: 'Add Truck'}}
         />
-      </Stack.Navigator>
+        <Stack.Screen
+          name={routes.expenses}
+          component={ExpensesScreen}
+          options={{title: 'Expenses'}}
+        />
+        <Stack.Screen
+          name={routes.payments}
+          component={PaymentsScreen}
+          options={{title: 'Payments'}}
+        />
+        <Stack.Screen
+         name={routes.profitLossReport}
+         component={ProfitLossReportScreen}
+         options={{title: 'Profit and Loss Report'}}
+        />
+        <Stack.Screen
+          name={routes.khata}
+          component={KhataScreen}
+          options={{title: 'Khata'}}
+        />
+        <Stack.Screen
+          name={routes.documents}
+          component={DocumentsScreen}
+          options={{title: 'Documents'}}
+        />
+        <Stack.Screen
+          name={routes.reports}
+          component={ReportsScreen}
+          options={{title: 'Reports'}}
+        />
+       </Stack.Navigator> 
 
       <QuickActionSheet
         ref={ref => {

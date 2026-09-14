@@ -12,19 +12,19 @@ const SLIDE_HEIGHT = 160; // explicit height — do not switch this back to minH
 const slides = [
   {
     key: 'trips',
-    imageSource: require('../../../assets/images/track-fleet.jpg'),
+    imageSource: require('../../../assets/images/9764BE0C-5D14-4DBB-9E71-7FCEE8476A05.png'),
     title: 'Manage your trips',
     subtitle: 'Create, manage and track the progress of every trip',
   },
   {
     key: 'khata',
-    imageSource: require('../../../assets/images/manage.jpeg'),
+    imageSource: require('../../../assets/images/27D5C839-27E6-44D4-8382-D3935725C081.png'),
     title: 'Manage your Khata',
     subtitle: 'Keep track of payments, balances and business transactions',
   },
   {
     key: 'manage',
-    imageSource: require('../../../assets/images/carousel-2.jpg'),
+    imageSource: require('../../../assets/images/1A74BE9E-3DA9-40B7-B9E9-01D12BC22041.jpeg'),
     title: 'Manage your fleet',
     subtitle: 'Manage trucks, drivers, expenses and your transport business',
   },
@@ -94,10 +94,10 @@ export function PromoCarousel() {
               />
               <View style={styles.slideOverlay} />
               <View style={styles.slideTextBlock}>
-                <AppText variant="heading" color="onInk" style={styles.slideTitle}>
+                <AppText variant="heading" color="surface" style={styles.slideTitle}>
                   {item.title}
                 </AppText>
-                <AppText variant="body" color="onInk" style={styles.slideSubtitle}>
+                <AppText variant="body" color="surface" style={styles.slideSubtitle}>
                   {item.subtitle}
                 </AppText>
               </View>

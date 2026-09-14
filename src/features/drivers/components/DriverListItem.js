@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {AppText} from '../../../components/common/AppText';
 import {colors, radius, spacing} from '../../../theme';
@@ -22,7 +22,12 @@ export function DriverListItem({driver, onPress}) {
   return (
     <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.7}>
       <View style={styles.iconCircle}>
-        <Icon name="account-tie-outline" size={20} color={colors.textMuted} />
+        {/* <Icon name="account-tie-outline" size={20} color={colors.textMuted} /> */}
+        {driver.driverphoto ? (
+        <Image source={{uri: driver.driverphoto}} style={styles.photo} />
+        ) : (
+       <Icon name="account-tie-outline" size={20} color={colors.textMuted} />
+       )}
       </View>
       <View style={styles.info}>
         <View style={styles.nameRow}>
@@ -72,6 +77,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surfaceMuted,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  photo: {
+   width: '100%',
+   height: '100%',
   },
   info: {
     flex: 1,

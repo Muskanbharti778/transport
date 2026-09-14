@@ -26,4 +26,10 @@ export const routes = {
   addTrip: 'AddTrip',
   tripDetails: 'TripDetails',
   tripProgress: 'TripProgress',
+  expenses: 'Expenses',
+  payments: 'Payments',
+  profitLossReport: 'ProfitLossReport',
+  khata: 'Khata',
+  documents: 'Documents',
+  reports: 'Reports',
 };

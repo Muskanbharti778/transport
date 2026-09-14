@@ -22,7 +22,6 @@ export default function AddTruckScreen() {
     error?.message || (error ? "Couldn't save this truck. Please try again." : null);
 
   const [vehicleTypeModal, setVehicleTypeModal] = useState(false);
-  const [ownershipModal, setOwnershipModal] = useState(false);
   const [supplierModal, setSupplierModal] = useState(false);
 
   const {
@@ -101,12 +100,7 @@ export default function AddTruckScreen() {
           onPress={() => setVehicleTypeModal(true)}
         />
 
-        <SelectField
-          label="Ownership"
-          placeholder="Select ownership"
-          value={ownership === 'own' ? 'Own' : ownership === 'market' ? 'Market' : ''}
-          onPress={() => setOwnershipModal(true)}
-        />
+        <OwnershipField value={ownership} onSelect={selectOwnership} />
 
         {ownership === 'market' ? (
           <SelectField
@@ -143,20 +137,6 @@ export default function AddTruckScreen() {
       />
 
       <SelectOptionModal
-        visible={ownershipModal}
-        title="Ownership"
-        options={[
-          {value: 'own', name: 'Own'},
-          {value: 'market', name: 'Market'},
-        ]}
-        selectedValue={ownership}
-        onSelect={selectOwnership}
-        onClose={() => setOwnershipModal(false)}
-        allowCustom={false}
-        placeholder="Search ownership..."
-      />
-
-      <SelectOptionModal
         visible={supplierModal}
         title="Select Supplier"
         options={suppliers.map(s => ({id: s.id, name: s.suppliername}))}
@@ -186,6 +166,44 @@ function SelectField({label, value, valueTone = 'text', placeholder, onPress}) {
         </AppText>
         <Icon name="chevron-down" size={18} color={colors.textMuted} />
       </TouchableOpacity>
+    </View>
+  );
+}
+
+function OwnershipField({value, onSelect}) {
+  const options = [
+    {value: 'own', label: 'Own'},
+    {value: 'market', label: 'Market'},
+  ];
+
+  return (
+    <View style={styles.field}>
+      <AppText variant="label" color="textMuted" style={styles.fieldLabel}>
+        Ownership
+      </AppText>
+
+      <View style={styles.radioGroup}>
+        {options.map(option => {
+          const selected = value === option.value;
+
+          return (
+            <TouchableOpacity
+              key={option.value}
+              style={styles.radioOption}
+              onPress={() => onSelect(option.value)}
+              activeOpacity={0.7}
+              accessibilityRole="radio"
+              accessibilityState={{selected}}>
+              <Icon
+                name={selected ? 'radiobox-marked' : 'radiobox-blank'}
+                size={22}
+                color={selected ? colors.primary : colors.textMuted}
+              />
+              <AppText variant="body">{option.label}</AppText>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
     </View>
   );
 }
@@ -244,5 +262,15 @@ const styles = StyleSheet.create({
   },
   selectText: {
     flexShrink: 1,
+  },
+  radioGroup: {
+    flexDirection: 'row',
+    gap: spacing.lg,
+  },
+  radioOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.xs,
+    minHeight: 44,
   },
 });
